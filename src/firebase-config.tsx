@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "@firebase/firestore";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -12,9 +13,12 @@ const firebaseConfig = {
   storageBucket: "crypto-site-7c0ab.appspot.com",
   messagingSenderId: "203819117295",
   appId: "1:203819117295:web:804deed4169e663992091a",
-  measurementId: "G-K0CDR28ZPQ"
+  measurementId: "G-K0CDR28ZPQ",
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const firebase = initializeApp(firebaseConfig);
+
+export const db = getFirestore();
+export const auth = getAuth(firebase);
+export const gProvider = new GoogleAuthProvider();
