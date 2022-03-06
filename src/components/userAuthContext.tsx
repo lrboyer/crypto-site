@@ -4,9 +4,11 @@ import {
   signOut,
   signInWithPopup,
 } from "firebase/auth";
-import { auth, gProvider } from "../firebase-config";
+import { auth, db, gProvider } from "../firebase-config";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 const userAuthContext = createContext(undefined);
+const usersCollectionRef = collection(db, "users");
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
@@ -16,7 +18,14 @@ export function UserAuthContextProvider({ children }) {
   }
   
   function googleSignIn() {
-    return signInWithPopup(auth, gProvider);
+    return signInWithPopup(auth, gProvider).then((result) => {
+      setDoc(doc(usersCollectionRef, result.user.uid), {
+        name: result.user.displayName,
+        email: result.user.email,
+      }).catch((err) => {
+        console.log(err);
+      })
+    })
   }
 
   useEffect(() => {
