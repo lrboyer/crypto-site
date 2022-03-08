@@ -15,5 +15,5 @@ export const LogOut = () => {
     }
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return <button className="border-4 rounded-2xl hover:rounded-xl hover:rotate-3 hover:scale-90 transition-all ease-linear border-white p-3 m-3" onClick={handleLogout}>Logout</button>;
 };
