@@ -14,9 +14,9 @@ import { create } from "domain";
 
 export const DashBoard = () => {
   const { user } = useUserAuth();
-  
-
   const usersCollectionRef = collection(db, "users");
+
+  console.log(user);
 
   useEffect(() => {}, []);
 
