@@ -12,6 +12,7 @@ import { db } from "../firebase-config";
 import { NavBar } from "./NavBar";
 import axios from "axios";
 import Coins from "./Coins";
+import Footer from "./Footer";
 
 export const DashBoard = () => {
   const { user } = useUserAuth();
@@ -33,7 +34,7 @@ export const DashBoard = () => {
     <div className="h-auto bg-navyblue">
       <NavBar />
       <Coins coins={coins}/>
-
+      <Footer />
     </div>
   );
 };
