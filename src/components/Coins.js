@@ -20,7 +20,7 @@ const Coins = (props) => {
       {props.coins.map(coins => {
         return ( 
           
-          <Link to={`/coin/${coins.id}`} element={<ProtectedRoute><Coin /> </ProtectedRoute>} key={coins.id} exact>
+          <Link to={`/coin/${coins.id}`} element={<ProtectedRoute><Coin /> </ProtectedRoute>} key={coins.id}>
             <CoinItem coins={coins} />
           </Link>
         );
