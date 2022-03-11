@@ -20,7 +20,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/coin" element={<Coin />}>
+          <Route path="/coin" element={<ProtectedRoute><Coin /></ProtectedRoute>}>
               <Route path=':coinId' element={<ProtectedRoute><Coin /></ProtectedRoute>}/>
           </Route>
 

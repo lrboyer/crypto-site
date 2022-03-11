@@ -8,7 +8,8 @@ export const NavBar = () => {
   let navigate = useNavigate();
 
   return (
-    <div className="z-50 sticky top-0 w-full flex flex-row h-20 justify-between items-center align-middle bg-[url('../public/images/bitcoin-pattern.svg')] bg-cover bg-no-repeat text-white shadow-lg">
+    <div className="z-50 sticky top-0 w-full flex flex-row h-20 justify-between items-center align-middle
+     bg-[url('../public/images/bitcoin-pattern.svg')] bg-cover bg-no-repeat text-white shadow-lg">
       <div className="flex flex-row items-center h-20 md:w-72 w-48">
         <NavBarIcon
           icon={<CgProfile size="35" />}
