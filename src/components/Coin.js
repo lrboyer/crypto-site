@@ -9,6 +9,11 @@ const Coin = () => {
   const [coin, setCoin] = useState({});
   const params = useParams();
   const url = `https://api.coingecko.com/api/v3/coins/${params.coinId}`;
+  const [price, setPrice] = useState(0.0);
+  
+  const calAmount = (event) => {
+    setPrice(event.target.value * coin.market_data.current_price.usd)
+  }
 
   useEffect(() => {
     axios
@@ -33,17 +38,22 @@ const Coin = () => {
           <div className="flex flex-row w-full m-auto justify-between align-middle items-center border-2"> {/*buy and prices*/}
             
             <div className="py-8 w-full flex border-2"> {/*info*/}
-              <p className="">Rank #{coin.market_cap_rank}</p> 
-              {coin.image ? <img src={coin.image.small} alt="" /> : null}
-              {coin.symbol ? <p>{coin.symbol.toUpperCase()}</p> : null}
+              <p className="m-auto">Rank #{coin.market_cap_rank}</p> 
+              {coin.image ? <img className="m-auto" src={coin.image.small} alt="" /> : null}
+              {coin.symbol ? <p className="m-auto">{coin.symbol.toUpperCase()}</p> : null}
             </div>
 
-            <div className="py-8 w-full flex flex-col border-2"> {/*buy*/}
-              <input className="text-black text-bold w-1/2" placeholder=".005"/>
-              <button className="w-4 h-2 bg-">Buy</button>
+            <div className="py-8 w-full flex flex-col border-2 m-auto"> {/*buy*/}
+              <div className="flex flex-row align-middle">
+                <h1>Amount</h1>
+                <input onChange={calAmount} className="text-black text-bold my-4 w-1/2 m-auto" placeholder=".005"/>
+              </div>
+              <p>${price.toLocaleString()}</p>
+              <button className="w-16 h-10 rounded-xl bg-navyblue m-auto">Buy</button>
             </div>
 
-            <div className="py-8 w-full flex  border-2"> {/*price*/}
+            <div className="py-8 w-full flex flex-col border-2"> {/*price*/}
+              <h1 className="text-3xl text-bold">Current Price</h1>
               {coin.market_data?.current_price ? (
                 <h1 className="text-4xl text-bold">
                   ${coin.market_data.current_price.usd.toLocaleString()}
