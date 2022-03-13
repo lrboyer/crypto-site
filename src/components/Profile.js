@@ -7,13 +7,11 @@ import {
   deleteDoc,
   setDoc,
 } from "firebase/firestore";
-import { db } from "../firebase-config";
 import { NavBar } from "./NavBar";
 import Footer from "./Footer";
 
 export const Profile = () => {
   const { user } = useUserAuth();
-  const usersCollectionRef = collection(db, "users");
 
   return (
     <div className="h-auto bg-navyblue">

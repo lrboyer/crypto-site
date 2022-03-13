@@ -22,6 +22,7 @@ export function UserAuthContextProvider({ children }) {
       setDoc(doc(usersCollectionRef, result.user.uid), {
         name: result.user.displayName,
         email: result.user.email,
+        coins: {}
       }).catch((err) => {
         console.log(err);
       })
