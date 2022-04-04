@@ -17,6 +17,14 @@ export function UserAuthContextProvider({ children }) {
 		else return {};
 	};
 
+	let moneySpent = async (uid) => {
+		let userDoc = doc(db, "users", uid);
+		let userSnap = await getDoc(userDoc).then((response) => {return response}).catch((err) => {console.log(err)});
+
+		if (userSnap.exists()) return userSnap.data().spent;
+		else return 0;
+	};
+
 	function logOut() {
 		return signOut(auth);
 	}
@@ -26,12 +34,13 @@ export function UserAuthContextProvider({ children }) {
 			async (result) => {
 
 				let coins = await boughtCoins(result.user.uid);
-				console.log(coins);
+				let spent = await moneySpent(result.user.uid);
 
 				setDoc(doc(usersCollectionRef, result.user.uid), {
 					name: result.user.displayName,
 					email: result.user.email,
 					coins: coins,
+					spent: spent,
 				}).catch((err) => {
 					console.log(err);
 				});
