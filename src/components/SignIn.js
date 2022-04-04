@@ -9,7 +9,7 @@ export const SignIn = () => {
 
   const { googleSignIn } = useUserAuth();
 
-  const handleSignIn = async (e: any) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     try {
       await googleSignIn();

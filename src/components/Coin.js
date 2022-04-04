@@ -5,8 +5,6 @@ import DOMPurify from "dompurify";
 import { NavBar } from "./NavBar";
 import Footer from "./Footer";
 import {
-	collection,
-	updateDoc,
 	doc,
 	setDoc,
 	getDoc,
@@ -68,7 +66,6 @@ const Coin = () => {
 			.get(url)
 			.then((res) => {
 				setCoin(res.data);
-				console.log(res.data);
 			})
 			.catch((error) => {
 				console.log(error);
