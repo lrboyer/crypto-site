@@ -63,8 +63,8 @@ export let Profile = () => {
 					</div>
 					
 				
-
-				{Object.entries(userCoins).map(([coin, number], i) => (
+				{/*Sorts by most held in coin to least number of coins prob need to call function here to  */}
+				{Object.entries(userCoins).sort((a, b) => a.number > b.number ? -1 : 1).map(([coin, number], i) => (
 					<div className="bg-blue-500 m-2 flex w-full" key={i}>
 						<ProfileCoin coin={coin} />
 					</div>
