@@ -10,7 +10,6 @@ export let Profile = () => {
 	let { user } = useUserAuth();
 	let [userSpent, setUserSpent] = useState(0);
 	let [userCoins, setUserCoins] = useState([]);
-	let [coinData, setCoinData] = useState([]);
 
 	useEffect(() => {
 		const getUserInfo = async () => {
@@ -37,7 +36,7 @@ export let Profile = () => {
 	}, [user.uid]);
 
 	return (
-		<div className="h-full w-full bg-navyblue">
+		<div className="h-full w-full bg-[url('../public/images/bitcoin-pattern.svg')] bg-cover bg-no-repeat">
 			<NavBar />
 			<div className="flex flex-col m-auto items-center bg-white w-1/4 align-middle">
 				<h1>Profile</h1>
@@ -45,32 +44,30 @@ export let Profile = () => {
 				<p>{user.displayName}</p>
 				<p>{user.email}</p>
 			</div>
-			<div className="flex flex-col mt-5 m-auto items-center bg-white w-3/4 align-middle">
+			<div className="flex flex-col mt-5 m-auto items-center bg-lightblue w-3/4 align-middle">
 				<h1>Assets</h1>
+				<p>Money Invested: ${userSpent.toLocaleString()}</p>
+				<p>Balance</p>
 
 				<div className="font-ubuntu text-white max-w-6xl m-auto mt-20 bg-navyblue w-full rounded-xl">
 					{" "}
 					{/*Container*/}
 					<div className="flex justify-between items-center bg-navyblue w-auto border-r-8 m-0 p-6 font-bold border-4 rounded-xl border-lightblue">
-						{" "}
-						{/*Header*/}
-						<p>#</p>
-						<p className="-ml-16">Coin</p>
-						<p>Price</p>
-						<p>24h</p>
-						<p className="hidden md:block">Volume</p>
-						<p className="hidden md:block">Market Cap</p>
+						<p>Coin</p>
+						<p className="ml-6"># Held</p>
+						<p>Worth</p>
+						<p className="hidden md:block">Coin Price</p>
+						<p className="hidden md:block">24h</p>
 					</div>
-					
-				
-				{/*Sorts by most held in coin to least number of coins prob need to call function here to  */}
-				{Object.entries(userCoins).sort((a, b) => a.number > b.number ? -1 : 1).map(([coin, number], i) => (
-					<div className="bg-blue-500 m-2 flex w-full" key={i}>
-						<ProfileCoin coin={coin} />
-					</div>
-				))}
+					{/*Sorts by most held in coin to least number of coins prob need to call function here to  */}
+					{Object.entries(userCoins)
+						.sort((a, b) => (a.number > b.number ? -1 : 1))
+						.map(([coin, number], i) => ( 
+							<div className="m-2 flex w-full" key={i}>								
+								<ProfileCoin amount={number} coin={coin}/>
+							</div>
+						))}
 				</div>
-				<p>Money Invested: ${userSpent.toLocaleString()}</p>
 			</div>
 			<Footer />
 		</div>
